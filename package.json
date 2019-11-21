@@ -1,0 +1,17 @@
+{
+  "name": "nodejs-test",
+  "version": "1.0.0",
+  "description": "simple testing project",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chromedriver": "^78.0.1",
+    "mocha": "^6.2.2",
+    "selenium-webdriver": "^4.0.0-alpha.5"
+  }
+}
