@@ -33,17 +33,17 @@ describe('mylodash', function() {
     });
     
     describe('inRange', function(){
-        it('inRange should return false with given parameters: -6, -5, 5', function(){
+        it('inRange should return "false" with given parameters: -6, -5, 5', function(){
             let result = mylodash.inRange(-6, -5, 5);
             assert.isFalse(result);
         });
 
-        it('inRange should return true with given parameters: -5, -5, 5', function(){
+        it('inRange should return "true" with given parameters: -5, -5, 5', function(){
             let result = mylodash.inRange(-5, -5, 5);
             assert.isTrue(result);
         });
 
-        it('inRange should return true with given parameters: 4, -5, 5', function(){
+        it('inRange should return "true" with given parameters: 4, -5, 5', function(){
             let result = mylodash.inRange(4, -5, 5);
             assert.isTrue(result);
         });
@@ -74,7 +74,7 @@ describe('mylodash', function() {
             let result = mylodash.words('Ala ma kota');
             assert.typeOf(result[0], 'string');
             assert.typeOf(result[1], 'string');
-            assert.typeOf(result[2], 'string');
+            assert.typeOf(result[2], 'string'); //for
         });
 
         it('words should return an array of length 3 with given parameter: "Ala ma kota"', function(){
@@ -132,7 +132,7 @@ describe('mylodash', function() {
     });
 
     describe('has', function(){
-        it('has should return true with given parameters: object with keys and values, key', function(){
+        it('has should return "true" with given parameters: object with keys and values, key', function(){
             let result = mylodash.has({'Poland':'Warsaw', 'Germany':'Berlin', 'France':'Paris'}, 'France');
             assert.equal(result, true);
         });       
@@ -155,6 +155,11 @@ describe('mylodash', function() {
         it('has should return false with given parameters: nested object, key in nested object', function(){
             let result = mylodash.has({'Europe': {'Poland': 'Warsaw', 'France': 'Paris'}, 'Africa': {'Kenya': 'Nairobi', 'Egypt': 'Cairo'}}, 'France');
             assert.equal(result, false);
+        });
+
+        it('has should return false with given parameters: nested object, key in nested object', function(){
+            let result = mylodash.has({'Europe': {'Poland': 'Warsaw', 'France': 'Paris'}, 'Africa': {'Kenya': 'Nairobi', 'Egypt': 'Cairo'}}, {'Kenya': 'Nairobi', 'Egypt': 'Cairo'});
+            assert.equal(result, false); 
         });
 
         it('has should return true with given parameters: object with numbers and strings, number as a key', function(){
@@ -192,21 +197,21 @@ describe('mylodash', function() {
         it('invert should not return a properly inverted object with given parameter: nested object', function(){
             let result = mylodash.invert({'Europe': {'Poland': 'Warsaw', 'France': 'Paris'}, 'Africa': {'Kenya': 'Nairobi', 'Egypt': 'Cairo'}});
             assert.notDeepEqual(result, {'[object Object]': 'Africa', '[object Object]': 'Europe'});
-        });
+        }); //check if inverted object contains values: Europe, Africa
     });
 
 
     describe('findKey', function(){
 
-        function predicate0(value) {
+        function predicateValueEquals(value) {
             return value == 'Paris';
         };
 
-        function predicate1(value) {
+        function predicateValueLength(value) {
             return value.length == 5;
         };
 
-        function predicate2(value) {
+        function predicateValueTypeString(value) {
             return typeof value === 'string';
         };
 
@@ -226,7 +231,7 @@ describe('mylodash', function() {
             return value < 4;
         };
         
-        it('findKey should return "France" with predicate filtering by value name "Paris"', function(){
+        it('findKey should return "France" with predicate filtering by value = "Paris"', function(){
             let result = mylodash.findKey({'Poland':'Warsaw', 'Germany':'Berlin', 'France':'Paris'}, predicate0);
             assert.equal(result, 'France');
         });
@@ -266,15 +271,20 @@ describe('mylodash', function() {
             assert.equal(result, undefined);
         });
 
-        it('findKey should return undefined with predicate filtering by value name "Paris" on empty object', function(){
+        it('findKey should return undefined with predicate filtering by value = "Paris" on empty object', function(){
             let result = mylodash.findKey({}, predicate0);
             assert.equal(result, undefined);
         });
 
-        it('findKey should return undefined with predicate filtering by value name "Paris" on nested object', function(){
+        it('findKey should return undefined with predicate filtering by value = "Paris" on nested object', function(){
             let result = mylodash.findKey({'Europe': {'Poland': 'Warsaw', 'France': 'Paris'}, 'Africa': {'Kenya': 'Nairobi', 'Egypt': 'Cairo'}}, predicate0);
             assert.equal(result, undefined);
         });
+
+        it('findKey should return undefined with predicate filtering by value = object on nested object', function(){
+            let result = mylodash.findKey({'Europe': {'Poland': 'Warsaw', 'France': 'Paris'}, 'Africa': {'Kenya': 'Nairobi', 'Egypt': 'Cairo'}}, predicate0);
+            assert.equal(result, undefined);
+        });//fix
 
         it('findKey should return "Europe" with predicate filtering by typeof value = "object" in nested object', function(){
             let result = mylodash.findKey({'Europe': {'Poland': 'Warsaw', 'France': 'Paris'}, 'Africa': 54}, predicate4);
@@ -311,7 +321,7 @@ describe('mylodash', function() {
 
     describe('dropWhile', function(){
 
-        function predicate0(element, index, array) {
+        function predicateElementEqual(element, index, array) {
             return element.charAt(0) === 'C';
         };
 
