@@ -50,6 +50,9 @@ const mylodash = {
     invertedObject = {};
     for (let key in object) {
       origValue = object[key];
+      if (typeof origValue === 'object') {
+        throw 'Cannot invert with object as value';
+      }
       invertedObject[origValue] = key;
     }
     return invertedObject;
