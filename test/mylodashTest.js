@@ -408,12 +408,12 @@ describe('mylodash', function() {
             assert.deepEqual(result, [[1], [2], [3], [4]]);
         });
         
-        it('chunk shound return an unmodified array with given parameters: array, 0', function(){
+        it('chunk should return an unmodified array with given parameters: array, 0', function(){
             let result = mylodash.chunk([1,2,3,4], 0);
             assert.deepEqual(result, [1,2,3,4]);
         });
 
-        it('chunk should retun an unmodified array with given parameters: array, negative value', function(){
+        it('chunk should return an unmodified array with given parameters: array, negative value', function(){
             let result = mylodash.chunk([1,2,3,4], -2);
             assert.deepEqual(result, [1,2,3,4]);
         });
