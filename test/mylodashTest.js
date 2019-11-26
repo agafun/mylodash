@@ -75,10 +75,6 @@ describe('mylodash', function() {
             for (let i=0; i<result.length; i++) {
                 assert.typeOf(result[i], 'string');
             };
-            // try using for loop
-            // assert.typeOf(result[0], 'string');
-            // assert.typeOf(result[1], 'string');
-            // assert.typeOf(result[2], 'string');
         });
 
         it('words should return an array of length 3 with given parameter: "Ala ma kota"', function(){
@@ -199,9 +195,12 @@ describe('mylodash', function() {
         });
         
         it('invert should return an inverted object containing values "Europe" and "Africa" with given parameter: nested object', function(){
-            let result = mylodash.invert({'Europe': {'Warsaw':'Poland'}, 'Africa': {'Kenya': 'Nairobi', 'Egypt': 'Cairo'}});
-            assert.deepEqual(Object.values(result), Object.values({'[object Object]': 'Europe', '[object Object]': 'Africa'}));
-        }); //check if inverted object contains values: Europe, Africa
+            try {
+                mylodash.invert({'Europe': {'Warsaw':'Poland'}, 'Africa': {'Kenya': 'Nairobi', 'Egypt': 'Cairo'}});
+            } catch(error){
+                assert(error != null);
+            }
+        });
     });
 
 
