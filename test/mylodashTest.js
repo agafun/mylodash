@@ -199,7 +199,7 @@ describe('mylodash', function() {
             assert.deepEqual(result, {'Warsaw': 'Poland', 'Berlin': 'Germany', 'undefined': 'France'});
         });
         
-        it('invert should throw an error when trying invert a nested object', function(){
+        it('invert should throw an error when trying to invert a nested object', function(){
             try {
                 mylodash.invert({'Europe': {'Warsaw':'Poland'}, 'Africa': {'Kenya': 'Nairobi', 'Egypt': 'Cairo'}});
             } catch(error){
