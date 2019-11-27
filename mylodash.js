@@ -92,8 +92,7 @@ const mylodash = {
     if (size === undefined) {
       size = 1;
     } else if (size <= 0) {
-      console.log('`size` must be a positive value');
-      return array;
+      throw '`size` must be a positive value';
     }
     chunksArray = [];
     size = Math.round(size);
