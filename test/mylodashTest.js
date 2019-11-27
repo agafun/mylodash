@@ -53,7 +53,12 @@ describe('mylodash', function() {
             assert.isFalse(result);
         });
 
-        it('inRange should return "false" with given parameters: 3, 5, -5 (inverted range)', function(){
+        it('inRange should return "false" with given parameters: 6, 5 (undefined end value)', function(){
+            let result = mylodash.inRange(6, -5);
+            assert.isFalse(result);
+        });
+
+        it('inRange should return "true" with given parameters: 3, 5, -5 (inverted range)', function(){
             let result = mylodash.inRange(3, 5, -5);
             assert.isTrue(result);
         });
@@ -194,7 +199,7 @@ describe('mylodash', function() {
             assert.deepEqual(result, {'Warsaw': 'Poland', 'Berlin': 'Germany', 'undefined': 'France'});
         });
         
-        it('invert should return an inverted object containing values "Europe" and "Africa" with given parameter: nested object', function(){
+        it('invert should throw an error when trying to invert a nested object', function(){
             try {
                 mylodash.invert({'Europe': {'Warsaw':'Poland'}, 'Africa': {'Kenya': 'Nairobi', 'Egypt': 'Cairo'}});
             } catch(error){
@@ -320,7 +325,7 @@ describe('mylodash', function() {
             assert.deepEqual(result, [1,2,3]);
         });
 
-        it('drop should return an array [4,5,6] with given parameters: [1,2,3,4,5,6], -3 (negative value drop array elements from the end of array)', function(){
+        it('drop should return an array [4,5,6] with given parameters: [1,2,3,4,5,6], -3 (negative value drops array elements from the end of the array)', function(){
             let result = mylodash.drop([1,2,3,4,5,6], -3);
             assert.deepEqual(result, [4,5,6]);
         });
@@ -408,14 +413,20 @@ describe('mylodash', function() {
             assert.deepEqual(result, [[1], [2], [3], [4]]);
         });
         
-        it('chunk should return an unmodified array with given parameters: array, 0', function(){
-            let result = mylodash.chunk([1,2,3,4], 0);
-            assert.deepEqual(result, [1,2,3,4]);
+        it('chunk should throw an error trying split with size = 0', function(){
+            try {
+                mylodash.chunk([1,2,3,4], 0);
+            } catch(error){
+                assert(error != null);
+            }
         });
 
-        it('chunk should return an unmodified array with given parameters: array, negative value', function(){
-            let result = mylodash.chunk([1,2,3,4], -2);
-            assert.deepEqual(result, [1,2,3,4]);
+        it('chunk should throw an error trying split with size = negative value', function(){
+            try {
+                mylodash.chunk([1,2,3,4], -2);
+            } catch(error){
+                assert(error != null);
+            }
         });
 
         it('chunk should return an array split into arrays with given parameters: array, float number (float numbers are rounded)', function(){
