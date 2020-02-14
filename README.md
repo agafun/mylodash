@@ -45,7 +45,7 @@ Creates an array of elements split into groups the length of size. If array can'
 
 ## Tests
 
-There are 69 test cases written using [Chai Assertion Library](https://www.chaijs.com) which results are presented below. 
+There are 69 test cases written using [Chai Assertion Library](https://www.chaijs.com) which results are presented below. Code coverage has been calculated with the [istanbul/nyc](https://github.com/istanbuljs/nyc) tool.
 
 ```
   mylodash
@@ -131,4 +131,13 @@ There are 69 test cases written using [Chai Assertion Library](https://www.chaij
 
 
   69 passing (40ms)
+
+
+-------------|---------|----------|---------|---------|-------------------
+File         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------|---------|----------|---------|---------|-------------------
+All files    |   98.39 |    95.83 |     100 |   98.36 |                   
+ mylodash.js |   98.39 |    95.83 |     100 |   98.36 | 73                
+-------------|---------|----------|---------|---------|-------------------
   ```
+
